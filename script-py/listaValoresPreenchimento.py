@@ -9,6 +9,5 @@ tipoTelefone = ['Celular', 'Comercial', 'Residencial', 'FAX', 'Outros']
 tipoEndereco = ['Comercial', 'Residencial', 'Cobrança', 'Entrega', 'Outros']
 
 #Campos Planilha
-
 camposValidar = ["Documento de Identificação","Razão social/nome","Nome Fantasia","Data de aniversário","CNAE Principal", "Inscrição Estadual"]
 cabecalhosValidar = ["Perfil do parceiro", "Tipo de Inscrição Estadual"]
