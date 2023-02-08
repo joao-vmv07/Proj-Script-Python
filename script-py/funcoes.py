@@ -1,27 +1,44 @@
 
+import json
 from faker import Faker
 import random
+import string
 from listaValoresPreenchimento import *
 
 locales = 'pt-BR'
 fake = Faker(locales)
 
+POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
+
+with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
+    dadosJsonCamposObrigatorios = json.load(meu_json)
+
+camposObrigatoriosPessoaJuridica = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["pessoaJuridica"]["campos"]
+camposPrioritarios  = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["camposPrioritarios"]
 
 def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho):
     valor = eval(f'{campoAlgoritmo}({checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
-    checkCabecalho(infDadoCriado, campoCabecalho, valor, cabecalhosValidar)
+    checkCampo(infDadoCriado, campoCabecalho, valor)
     return valor
 
+
 def checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido):
-    for campo in cabecalhosValidar:
-        if campo in infDadoCriado and campoCabecalho in camposValidar:
-            valorPreenchido = f"'{infDadoCriado[campo]}'"
+    if campoCabecalho in camposValidarPerfilParceiro:
+        valorPreenchido = f"'{infDadoCriado[campoValidadorPerfilParceiro]}'"
+    if campoCabecalho in camposValidarInscricao:
+        valorPreenchido = f"'{infDadoCriado[campoValidadorTipoInscricao]}'"
     return valorPreenchido
 
-def checkCabecalho(infDadoCriado, campoCabecalho, valor, cabecahoValidar):
-    if campoCabecalho in cabecahoValidar:
+
+def checkCampo(infDadoCriado, campoCabecalho, valor):
+    if campoCabecalho in camposValidadores:
         infDadoCriado[campoCabecalho] = valor
+
+
+def calcQuantidadeCadastro(argQuantidadeCadastro):
+    return POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO + argQuantidadeCadastro
+
 
 def generate_status():
     return random.choice(status)
@@ -35,8 +52,8 @@ def generate_perfilParceiro():
     return random.choice(perfilParceiro)
 
 
-def generate_documentoIdentificacao(perfilParceiro):
-    return checkTipoPessoa(perfilParceiro)
+def generate_documentoIdentificacao(tipoPessoa):
+    return checkTipoPessoa(tipoPessoa)
 
 
 def generate_razaoSocial_or_name(tipoPessoa):
@@ -71,15 +88,15 @@ def generate_tipoInscricaoEstadual():
 
 
 def generate_inscricaoEstadual(inscricaoEstadual):
-    return fake.pyint() if inscricaoEstadual != "Isento" else '' 
+    return fake.pyint() if inscricaoEstadual != "Isento" else ''
 
 
-def generate_SUFRAMA():
-    return random.choice(suframa)
+def generate_SUFRAMA(inscricaoEstadual):
+    return random.choice(suframa) if inscricaoEstadual != "Isento" else ''
 
 
-def generate_documento():
-    return random.choice([fake.cpf(), fake.cnpj()])
+def generate_documento_contato(tipoPessoa):
+    return checkTipoPessoa(tipoPessoa)
 
 
 def generate_areaResponsavel():
@@ -95,7 +112,7 @@ def generate_tipoTelefone():
 
 
 def generate_telefone():
-    return fake.phone_number()
+    return random.getrandbits(32)
 
 
 def generate_email():
@@ -107,7 +124,7 @@ def generate_tipoEndereco():
 
 
 def generate_CEP():
-    return fake.postcode()
+    return fake.postcode().replace("-", "")
 
 
 def generate_logradouro():
@@ -119,7 +136,7 @@ def generate_numeroPropriedade():
 
 
 def generate_complemento():
-    return fake.address()
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 
 
 def generate_municipio():

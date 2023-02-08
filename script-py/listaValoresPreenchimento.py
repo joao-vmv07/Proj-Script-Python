@@ -4,10 +4,16 @@ tipoCadastro = ['Cliente', 'Fornecedor', 'Transportadora', 'Cliente | Fornecedor
 perfilParceiro = ['Pessoa Física', 'Pessoa Jurídica', 'Estrangeiro']
 tipoInscricaoEstadual = ['Isento', 'Contribuinte', 'Não Contribuinte']
 cnae = ['3250706','4530702','4530706','4613300']
-suframa = ['82252918', '87866990', '24794329', '502300']
+suframa = ['82252918', '87866990', '24794329']
 tipoTelefone = ['Celular', 'Comercial', 'Residencial', 'FAX', 'Outros']
-tipoEndereco = ['Comercial', 'Residencial', 'Cobrança', 'Entrega', 'Outros']
+tipoEndereco = ["COMERCIAL", "RESIDENCIAL", "COBRANCA", "ENTREGA", "OUTROS"]
 
 #Campos Planilha
-camposValidar = ["Documento de Identificação","Razão social/nome","Nome Fantasia","Data de aniversário","CNAE Principal", "Inscrição Estadual"]
-cabecalhosValidar = ["Perfil do parceiro", "Tipo de Inscrição Estadual"]
+camposValidar = ["Documento de Identificação","Razão social/nome","Nome Fantasia","Data de aniversário","CNAE Principal", "Inscrição Estadual","SUFRAMA", "CPF/CNPJ contato"]
+
+campoValidadorPerfilParceiro = "Perfil do parceiro"
+campoValidadorTipoInscricao = "Tipo de Inscrição Estadual"
+camposValidarPerfilParceiro = ["Documento de Identificação","Razão social/nome","Nome Fantasia","Data de aniversário","CNAE Principal", "CPF/CNPJ contato"]
+camposValidarInscricao = ["Inscrição Estadual","SUFRAMA"]
+
+camposValidadores =  ["Perfil do parceiro", "Tipo de Inscrição Estadual"]

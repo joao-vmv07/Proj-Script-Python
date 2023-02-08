@@ -1,0 +1,117 @@
+
+{
+    "simplifique":{
+        "parceiros": {
+            "camposPrioritarios": [
+                {
+                    "cabecalho": "Perfil do Parceiro",
+                    "algoritmo": "generate_perfilParceiro"
+                },
+                {
+                    "cabecalho": "Tipo de Inscrição Estadual",
+                    "algoritmo": "generate_tipoInscricaoEstadual"
+                },
+                {
+                    "cabecalho": "Recebe XML",
+                    "algoritmo": "generate_recebeXML"  
+                },
+                {
+                    "cabecalho": "CEP",
+                    "algoritmo": "generate_CEP"
+                }
+            ],
+            "pessoaJuridica":{
+                "campos": [
+                    {    
+                        "cabecalho": "Documento de Identificação",
+                        "algoritmo": "generate_documentoIdentificacao"
+                    },
+                    {
+                        "cabecalho": "Razão social/nome",
+                        "algoritmo": "generate_razaoSocialNome"
+                    },
+                    {
+                        "cabecalho": "Nome Fantasia",
+                        "algoritmo": "generate_nomeFantasia"
+                    },
+                    {
+                        "cabecalho": "CNAE Principal",
+                        "algoritmo": "generate_CNAE"
+                    },
+                    {
+                        "cabecalho": "CPF/CNPJ contato",
+                        "algoritmo": "generate_documento"
+                    }
+                ]
+            },
+            "pessoaFisica":{
+                "campos": [
+                    {    
+                        "cabecalho": "Documento de Identificação",
+                        "algoritmo": "generate_documentoIdentificacao"
+                    },
+                    {
+                        "cabecalho": "Razão social/nome",
+                        "algoritmo": "generate_razaoSocialNome"
+                    },
+                    {
+                        "cabecalho": "Data de aniversário",
+                        "algoritmo": "generate_dataAniversario"
+                    },
+                    {
+                        "cabecalho": "CPF/CNPJ contato",
+                        "algoritmo": "generate_documento"
+                    }
+                ]
+            },
+            "contribuinte":{
+                "campos": [
+                    {
+                        "cabecalho": "Inscrição Estadual",
+                        "algoritmo": "generate_inscricaoEstadual"
+                    }
+                ]
+            },
+            "recebeXML":{
+                "campos": [
+                    {
+                        "cabecalho": "Nome do Contato",
+                        "algoritmo": "generate_nome"
+                    }, 
+                    {
+                        "cabecalho": "Tipo de telefone",
+                        "algoritmo": "generate_tipoTelefone"
+                    },
+                    {
+                        "cabecalho": "Telefone de contato",
+                        "algoritmo": "generate_telefone"
+                    },
+                    {
+                        "cabecalho": "E-mail de contato",
+                        "algoritmo": "generate_email"
+                    }
+                ]
+            },
+            "cep":{
+                "campos":[
+                    {
+                        "cabecalho": "Tipo de Endereço",
+                        "algoritmo": "generate_tipoEndereco"
+                    },
+                    {
+                        "cabecalho": "Logradouro",
+                        "algoritmo": "generate_logradouro"
+                    },
+                    {
+                        "cabecalho": "Número",
+                        "algoritmo": "generate_numeroImovel"
+                    },
+                    {
+                        "cabecalho": "Bairro",
+                        "algoritmo": "generate_bairro"
+                    }
+                ]
+            }
+        }
+    }
+}    

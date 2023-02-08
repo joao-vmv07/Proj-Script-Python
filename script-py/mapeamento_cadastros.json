@@ -69,7 +69,7 @@
                 }, 
                 {
                     "cabecalho": "CPF/CNPJ contato",
-                    "algoritmo": "generate_documento",
+                    "algoritmo": "generate_documento_contato",
                     "obrigatorio": "false"
                 },
                 {
