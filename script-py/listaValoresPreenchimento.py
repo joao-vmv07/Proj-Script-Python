@@ -9,11 +9,11 @@ tipoTelefone = ['Celular', 'Comercial', 'Residencial', 'FAX', 'Outros']
 tipoEndereco = ["COMERCIAL", "RESIDENCIAL", "COBRANCA", "ENTREGA", "OUTROS"]
 
 #Campos Planilha
-camposValidar = ["Documento de Identificação","Razão social/nome","Nome Fantasia","Data de aniversário","CNAE Principal", "Inscrição Estadual","SUFRAMA", "CPF/CNPJ contato"]
+#camposValidadores =  ["Perfil do parceiro", "Tipo de Inscrição Estadual"] 
 
 campoValidadorPerfilParceiro = "Perfil do parceiro"
-campoValidadorTipoInscricao = "Tipo de Inscrição Estadual"
 camposValidarPerfilParceiro = ["Documento de Identificação","Razão social/nome","Nome Fantasia","Data de aniversário","CNAE Principal", "CPF/CNPJ contato"]
+
+campoValidadorTipoInscricao = "Tipo de Inscrição Estadual"
 camposValidarInscricao = ["Inscrição Estadual","SUFRAMA"]
 
-camposValidadores =  ["Perfil do parceiro", "Tipo de Inscrição Estadual"]

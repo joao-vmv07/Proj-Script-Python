@@ -12,13 +12,12 @@ POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
 
 with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
-    dadosJsonCamposObrigatorios = json.load(meu_json)
+    dadosJsonCampos = json.load(meu_json)
 
-camposObrigatoriosPessoaJuridica = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["pessoaJuridica"]["campos"]
-camposPrioritarios  = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["camposPrioritarios"]
+camposPrioritarios  = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
 
-def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho):
-    valor = eval(f'{campoAlgoritmo}({checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
+def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho, apenasObrigatorio):
+    valor = eval(f'{campoAlgoritmo}(f{apenasObrigatorio}{","+checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
     checkCampo(infDadoCriado, campoCabecalho, valor)
     return valor
 
@@ -32,8 +31,9 @@ def checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido):
 
 
 def checkCampo(infDadoCriado, campoCabecalho, valor):
-    if campoCabecalho in camposValidadores:
-        infDadoCriado[campoCabecalho] = valor
+    for campo in camposPrioritarios:
+        if campoCabecalho in campo["cabecalho"]:
+            infDadoCriado[campoCabecalho] = valor
 
 
 def calcQuantidadeCadastro(argQuantidadeCadastro):
