@@ -5,7 +5,7 @@
                 {
                     "cabecalho": "Perfil do parceiro",
                     "algoritmo": "generate_perfilParceiro",
-                    "campos": [
+                    "campos": [ 
                         {
                             "cabecalho": "Documento de Identificação",
                             "algoritmo": "generate_documentoIdentificacao"
@@ -39,6 +39,10 @@
                         {
                             "cabecalho": "Inscrição Estadual",
                             "algoritmo": "generate_inscricaoEstadual" 
+                        },
+                        {
+                            "cabecalho": "SUFRAMA",
+                            "algoritmo": "generate_SUFRAMA"
                         }
                     ]
                 },
@@ -78,7 +82,7 @@
                         },
                         {
                             "cabecalho": "Número",
-                            "algoritmo": "generate_numeroImovel"
+                            "algoritmo": "generate_numeroPropriedade"
                         },
                         {
                             "cabecalho": "Bairro",

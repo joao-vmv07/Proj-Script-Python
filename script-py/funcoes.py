@@ -14,23 +14,33 @@ valorPreenchido = ""
 with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
     dadosJsonCampos = json.load(meu_json)
 
-camposPrioritarios  = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
+camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
 
-def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho, apenasObrigatorio):
-    valor = eval(f'{campoAlgoritmo}(f{apenasObrigatorio}{","+checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
-    checkCampo(infDadoCriado, campoCabecalho, valor)
+
+def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho):
+    valor = eval(f'{campoAlgoritmo}({checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
+    checkCamposPrioritario(infDadoCriado, campoCabecalho, valor)
     return valor
 
 
 def checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido):
-    if campoCabecalho in camposValidarPerfilParceiro:
-        valorPreenchido = f"'{infDadoCriado[campoValidadorPerfilParceiro]}'"
-    if campoCabecalho in camposValidarInscricao:
-        valorPreenchido = f"'{infDadoCriado[campoValidadorTipoInscricao]}'"
+    for campo in camposPrioritarios:
+        if campo["cabecalho"] in infDadoCriado and checkCamposValidar(campoCabecalho):
+            campoPrioritario = campo["cabecalho"]
+            valorPreenchido = f"'{infDadoCriado[campoPrioritario]}'"
+            return valorPreenchido
     return valorPreenchido
 
 
-def checkCampo(infDadoCriado, campoCabecalho, valor):
+def checkCamposValidar(campoCabecalho):
+    for campoValidar in camposPrioritarios:
+        for campo in campoValidar["campos"]:
+            if campoCabecalho in campo["cabecalho"]:
+                return True
+    return False
+
+
+def checkCamposPrioritario(infDadoCriado, campoCabecalho, valor):
     for campo in camposPrioritarios:
         if campoCabecalho in campo["cabecalho"]:
             infDadoCriado[campoCabecalho] = valor
@@ -63,7 +73,7 @@ def generate_razaoSocial_or_name(tipoPessoa):
         return fake.company()
 
 
-def generate_nome():
+def generate_nome(recebeXML):
     return fake.name()
 
 
@@ -107,19 +117,19 @@ def generate_recebeXML():
     return random.choice(['Sim', 'Não'])
 
 
-def generate_tipoTelefone():
+def generate_tipoTelefone(recebeXml):
     return random.choice(tipoTelefone)
 
 
-def generate_telefone():
+def generate_telefone(recebeXml):
     return random.getrandbits(32)
 
 
-def generate_email():
+def generate_email(recebeXml):
     return fake.ascii_free_email()
 
 
-def generate_tipoEndereco():
+def generate_tipoEndereco(arg):
     return random.choice(tipoEndereco)
 
 
@@ -127,11 +137,11 @@ def generate_CEP():
     return fake.postcode().replace("-", "")
 
 
-def generate_logradouro():
+def generate_logradouro(arg):
     return fake.street_name()
 
 
-def generate_numeroPropriedade():
+def generate_numeroPropriedade(arg):
     return fake.building_number()
 
 
@@ -143,11 +153,11 @@ def generate_municipio():
     return fake.neighborhood()
 
 
-def generate_bairro():
+def generate_bairro(arg):
     return fake.bairro()
 
 
-def generate_UF():
+def generate_UF(arg):
     return fake.estado_sigla()
 
 

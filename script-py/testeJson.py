@@ -8,11 +8,16 @@ with open("script-py/mapeamento_cadastros.json", encoding='utf-8') as meu_json:
 with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
     dadosJsonCamposObrigatorios = json.load(meu_json)
 
-camposObrigatoriosPessoaJuridica = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["pessoaJuridica"]["campos"]
-camposPrioritarios  = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["camposPrioritarios"]
+camposPrioritarios = dadosJsonCamposObrigatorios["simplifique"]["parceiros"]["camposPrioritarios"]
 
-print(type(camposPrioritarios))
+for campo in camposPrioritarios:
+    print(campo["campos"])
+    if "Documento de Identificação" in campo["campos"]:
+        print("simm")
 
-for dadosC in camposPrioritarios:
-    print(dadosC["cabecalho"])
-    
+
+# def listaId(id):
+#     for item in lista:
+#         return item if item["id"] == id else ""
+
+# print(listaId("Parceiro")["campos"])
