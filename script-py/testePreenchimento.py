@@ -20,6 +20,8 @@ def preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro):
         for colunaPlanilha, campo in [(y + 1, campo) for (y, campo) in enumerate(camposPlanilha)]:
             if campo["obrigatorio"]:
                 paginaParceiro.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValor(infDadoCriado, campo['algoritmo'], campo['cabecalho']))
+            else:
+                paginaParceiro.cell(row = linhaPlanilha, column = colunaPlanilha, value = "")
 
 def preencherPlanilhaTodosCampos(argQuantidadeCadastro): 
     for linhaPlanilha in range (POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO, calcQuantidadeCadastro(argQuantidadeCadastro) ):
@@ -27,5 +29,5 @@ def preencherPlanilhaTodosCampos(argQuantidadeCadastro):
         for colunaPlanilha, campo in [(y + 1, campo) for (y, campo) in enumerate(camposPlanilha)]:
             paginaParceiro.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValor(infDadoCriado, campo['algoritmo'],  campo['cabecalho']))
 
-preencherPlanilhaTodosCampos(3)
+preencherPlanilhaCamposObrigatorios(10)
 planilha.save('excel/planilhasGerada/importar-parceiros-teste.xlsx')
