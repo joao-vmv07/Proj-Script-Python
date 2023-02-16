@@ -407,7 +407,6 @@
                 },
                 {
                     "cabecalho": "CEST",
-                    "algoritmo": "generate_CEST",
                     "obrigatorio": "false"
                 },
                 {

@@ -1,4 +1,3 @@
-
 import json
 from faker import Faker
 import random
@@ -24,11 +23,9 @@ def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho):
 
 
 def checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido):
-    for campo in camposPrioritarios:
-        if campo["cabecalho"] in infDadoCriado and checkCamposValidar(campoCabecalho):
-            campoPrioritario = campo["cabecalho"]
-            valorPreenchido = f"'{infDadoCriado[campoPrioritario]}'"
-            return valorPreenchido
+    campoPrioritario = checkCamposValidar(campoCabecalho)
+    if campoPrioritario:
+        valorPreenchido = f"'{infDadoCriado[campoPrioritario]}'"
     return valorPreenchido
 
 
@@ -36,8 +33,8 @@ def checkCamposValidar(campoCabecalho):
     for campoValidar in camposPrioritarios:
         for campo in campoValidar["campos"]:
             if campoCabecalho in campo["cabecalho"]:
-                return True
-    return False
+                return campoValidar['cabecalho']
+    return None
 
 
 def checkCamposPrioritario(infDadoCriado, campoCabecalho, valor):
@@ -48,6 +45,15 @@ def checkCamposPrioritario(infDadoCriado, campoCabecalho, valor):
 
 def calcQuantidadeCadastro(argQuantidadeCadastro):
     return POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO + argQuantidadeCadastro
+
+
+def checkTipoPessoa(tipoPessoa):
+    if tipoPessoa == "Pessoa Física":
+        return fake.cpf()
+    if tipoPessoa == "Pessoa Jurídica":
+        return fake.cnpj()
+    if tipoPessoa == "Estrangeiro":
+        return fake.ssn()
 
 
 def generate_status():
@@ -73,7 +79,7 @@ def generate_razaoSocial_or_name(tipoPessoa):
         return fake.company()
 
 
-def generate_nome(recebeXML):
+def generate_nome():
     return fake.name()
 
 
@@ -118,18 +124,18 @@ def generate_recebeXML():
 
 
 def generate_tipoTelefone(recebeXml):
-    return random.choice(tipoTelefone)
+    return random.choice(tipoTelefone) if recebeXml == 'Sim' else ''
 
 
 def generate_telefone(recebeXml):
-    return random.getrandbits(32)
+    return random.getrandbits(34) if recebeXml == 'Sim' else ''
 
 
 def generate_email(recebeXml):
-    return fake.ascii_free_email()
+    return fake.ascii_free_email() if recebeXml == 'Sim' else ''
 
 
-def generate_tipoEndereco(arg):
+def generate_tipoEndereco():
     return random.choice(tipoEndereco)
 
 
@@ -137,12 +143,12 @@ def generate_CEP():
     return fake.postcode().replace("-", "")
 
 
-def generate_logradouro(arg):
-    return fake.street_name()
+def generate_logradouro(cep):
+    return fake.street_name() if cep else ''
 
 
-def generate_numeroPropriedade(arg):
-    return fake.building_number()
+def generate_numeroPropriedade(cep):
+    return fake.building_number() if cep else ''
 
 
 def generate_complemento():
@@ -153,22 +159,13 @@ def generate_municipio():
     return fake.neighborhood()
 
 
-def generate_bairro(arg):
-    return fake.bairro()
+def generate_bairro(cep):
+    return fake.bairro() if cep else ''
 
 
-def generate_UF(arg):
-    return fake.estado_sigla()
+def generate_UF(cep):
+    return fake.estado_sigla() if cep else ''
 
 
 def generate_pais():
     return "Brasil"
-
-
-def checkTipoPessoa(tipoPessoa):
-    if tipoPessoa == "Pessoa Física":
-        return fake.cpf()
-    if tipoPessoa == "Pessoa Jurídica":
-        return fake.cnpj()
-    if tipoPessoa == "Estrangeiro":
-        return fake.ssn()

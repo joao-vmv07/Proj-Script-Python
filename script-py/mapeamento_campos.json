@@ -51,10 +51,6 @@
                     "algoritmo": "generate_recebeXML",
                     "campos": [
                         {
-                            "cabecalho": "Nome do Contato",
-                            "algoritmo": "generate_nome"
-                        },
-                        {
                             "cabecalho": "Tipo de telefone",
                             "algoritmo": "generate_tipoTelefone"
                         },
@@ -72,10 +68,6 @@
                     "cabecalho": "CEP",
                     "algoritmo": "generate_CEP",
                     "campos" : [
-                        {
-                            "cabecalho": "Tipo de Endereço",
-                            "algoritmo": "generate_tipoEndereco"
-                        },
                         {
                             "cabecalho": "Logradouro",
                             "algoritmo": "generate_logradouro"
