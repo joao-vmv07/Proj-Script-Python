@@ -2,6 +2,7 @@ import json
 from faker import Faker
 import random
 import string
+from funcoesProduto import *
 from listaValoresPreenchimento import *
 
 locales = 'pt-BR'
@@ -10,34 +11,35 @@ fake = Faker(locales)
 POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
 
+documentosCadastrados = listDocumentDataBase()
+
 with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
     dadosJsonCampos = json.load(meu_json)
 
 camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
 
-
 def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho):
     valor = eval(f'{campoAlgoritmo}({checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
-    checkCamposPrioritario(infDadoCriado, campoCabecalho, valor)
+    checkCampoPrioritario(infDadoCriado, campoCabecalho, valor)
     return valor
 
 
 def checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido):
-    campoPrioritario = checkCamposValidar(campoCabecalho)
+    campoPrioritario = checkCampoValidar(campoCabecalho)
     if campoPrioritario:
         valorPreenchido = f"'{infDadoCriado[campoPrioritario]}'"
     return valorPreenchido
 
 
-def checkCamposValidar(campoCabecalho):
-    for campoValidar in camposPrioritarios:
-        for campo in campoValidar["campos"]:
-            if campoCabecalho in campo["cabecalho"]:
-                return campoValidar['cabecalho']
+def checkCampoValidar(campoCabecalho):
+    for campoPrioritario in camposPrioritarios:
+        for campoValidar in campoPrioritario["campos"]:
+            if campoCabecalho in campoValidar["cabecalho"]:
+                return campoPrioritario['cabecalho']
     return None
 
 
-def checkCamposPrioritario(infDadoCriado, campoCabecalho, valor):
+def checkCampoPrioritario(infDadoCriado, campoCabecalho, valor):
     for campo in camposPrioritarios:
         if campoCabecalho in campo["cabecalho"]:
             infDadoCriado[campoCabecalho] = valor
@@ -49,12 +51,26 @@ def calcQuantidadeCadastro(argQuantidadeCadastro):
 
 def checkTipoPessoa(tipoPessoa):
     if tipoPessoa == "Pessoa Física":
-        return fake.cpf()
+        return generateDocumentCPF()
     if tipoPessoa == "Pessoa Jurídica":
-        return fake.cnpj()
+        return generateDocumentCNPJ()
     if tipoPessoa == "Estrangeiro":
         return fake.ssn()
 
+
+def generateDocumentCPF():
+    cpf = fake.cpf()
+    while cpf in documentosCadastrados:
+        cpf = fake.cpf()
+    documentosCadastrados.add(cpf)
+    return cpf
+
+def generateDocumentCNPJ():
+    cnpj = fake.cnpj()
+    while cnpj in documentosCadastrados:
+        cnpj = fake.cnpj()
+    documentosCadastrados.add(cnpj)
+    return cnpj
 
 def generate_status():
     return random.choice(status)
