@@ -5,7 +5,7 @@
                 {
                     "cabecalho": "Perfil do parceiro",
                     "algoritmo": "generate_perfilParceiro",
-                    "campos": [ 
+                    "campos": [
                         {
                             "cabecalho": "Documento de Identificação",
                             "algoritmo": "generate_documentoIdentificacao"
@@ -24,7 +24,7 @@
                         },
                         {
                             "cabecalho": "CPF/CNPJ contato",
-                            "algoritmo": "generate_documento" 
+                            "algoritmo": "generate_documento"
                         },
                         {
                             "cabecalho": "Data de aniversário",
@@ -38,7 +38,7 @@
                     "campos": [
                         {
                             "cabecalho": "Inscrição Estadual",
-                            "algoritmo": "generate_inscricaoEstadual" 
+                            "algoritmo": "generate_inscricaoEstadual"
                         },
                         {
                             "cabecalho": "SUFRAMA",
@@ -56,7 +56,7 @@
                         },
                         {
                             "cabecalho": "Telefone de contato",
-                            "algoritmo": "generate_telefone" 
+                            "algoritmo": "generate_telefone"
                         },
                         {
                             "cabecalho": "E-mail de contato",
@@ -67,7 +67,7 @@
                 {
                     "cabecalho": "CEP",
                     "algoritmo": "generate_CEP",
-                    "campos" : [
+                    "campos": [
                         {
                             "cabecalho": "Logradouro",
                             "algoritmo": "generate_logradouro"
@@ -79,6 +79,20 @@
                         {
                             "cabecalho": "Bairro",
                             "algoritmo": "generate_bairro"
+                        }
+                    ]
+                }
+            ]
+        },
+        "produtos": {
+            "camposPrioritarios": [
+                {
+                    "cabecalho": "Atributo",
+                    "algoritmo": "generate_atributo",
+                    "campos": [
+                        {
+                            "cabecalho": "Valor atributo",
+                            "algoritmo": "generate_valorAtributo"
                         }
                     ]
                 }

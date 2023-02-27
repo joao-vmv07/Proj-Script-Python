@@ -1,7 +1,7 @@
-
 from faker import Faker
 import random
 import string
+from funcoesParceiro import *
 from listaValoresPreenchimento import *
 from connectionMongo import *
 from connectionPostgres import *
@@ -9,9 +9,21 @@ from connectionPostgres import *
 locales = 'pt-BR'
 fake = Faker(locales)
 
+listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(317)
+documentosCliente, documentosFornecedor = connectionMongo(317)
+
+
+def valorProduto(campoAlgoritmo):
+    valorProduto = eval(f'{campoAlgoritmo}()')
+    return valorProduto
+
 
 def generate_codigoProduto():
     return fake.pyint()
+
+
+def generate_status():
+    return random.choice(status)
 
 
 def generate_nomeProduto():
@@ -23,7 +35,7 @@ def generate_codigoBarras():
 
 
 def generate_precoVenda():
-    return round(random.uniform(0.00, 1000.00), 2)
+    return round(random.uniform(0.00, 1000.00), 3)
 
 
 def generate_marca():
@@ -31,7 +43,7 @@ def generate_marca():
 
 
 def generate_peso():
-    return round(random.uniform(0.00, 90.00), 3)
+    return round(random.uniform(0.00, 100.00), 3)
 
 
 def generate_unidadeMedida():
@@ -39,7 +51,7 @@ def generate_unidadeMedida():
 
 
 def generate_valorAtributo():
-    return ''.join(random.choices(string.ascii_uppercase, k=2))
+    return ''.join(random.choices(string.ascii_uppercase, k=5))
 
 
 def generate_informacoesAdicionais():
@@ -67,19 +79,19 @@ def generate_NCM():
 
 
 def generate_exTipi():
-    return fake.pyint()
+    return fake.pyint(100, 999)
 
 
-def generate_controleFCI():
-    return random.getrandbits(105)
+def generate_controleFCI(size=31, chars=string.digits):
+    return 'A'+''.join(random.choice(chars) for _ in range(size))
 
 
 def generate_aliquotaTributosFederal():
-    return fake.pyint()
+    return round(random.uniform(10.00, 90.00), 2)
 
 
 def generate_aliquotaTributosEstadual():
-    return fake.pyint()
+    return round(random.uniform(10.00, 90.00), 2)
 
 
 def generate_CEST():
@@ -91,19 +103,11 @@ def generate_codigoTributacao():
 
 
 def generate_codigoBeneficioUF():
-    return random.getrandbits(25)
+    return random.getrandbits(30)
 
 
 def generate_fornecedor():
-    return generateDocumentoFornecedor()
-
-
-def generateDocumentoFornecedor():
     return random.choice(documentosFornecedor)
-
-
-def listDocumentDataBase():
-    return listaDocumentos
 
 
 def generate_atributo():

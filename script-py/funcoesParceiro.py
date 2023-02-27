@@ -2,6 +2,9 @@ import json
 from faker import Faker
 import random
 import string
+
+from connectionMongo import connectionMongo
+from funcoesProduto import valorProduto
 from funcoesProduto import *
 from listaValoresPreenchimento import *
 
@@ -11,17 +14,19 @@ fake = Faker(locales)
 POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
 
-documentosCadastrados = listDocumentDataBase()
+documentosCadastrados = connectionMongo(317)
+listaDocumentosCadastrados = list(documentosCadastrados)
 
 with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
     dadosJsonCampos = json.load(meu_json)
-
 camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
 
-def checkValor(infDadoCriado, campoAlgoritmo, campoCabecalho):
-    valor = eval(f'{campoAlgoritmo}({checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
-    checkCampoPrioritario(infDadoCriado, campoCabecalho, valor)
-    return valor
+
+def valorParceiro(infDadoCriado, campoAlgoritmo, campoCabecalho):
+    valorParceiro = eval(
+        f'{campoAlgoritmo}({checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido)})')
+    checkCampoPrioritario(infDadoCriado, campoCabecalho, valorParceiro)
+    return valorParceiro
 
 
 def checkInfDadoCriado(infDadoCriado, campoCabecalho, valorPreenchido):
@@ -60,17 +65,19 @@ def checkTipoPessoa(tipoPessoa):
 
 def generateDocumentCPF():
     cpf = fake.cpf()
-    while cpf in documentosCadastrados:
+    while cpf in listaDocumentosCadastrados:
         cpf = fake.cpf()
-    documentosCadastrados.add(cpf)
+    listaDocumentosCadastrados.append(cpf)
     return cpf
+
 
 def generateDocumentCNPJ():
     cnpj = fake.cnpj()
-    while cnpj in documentosCadastrados:
+    while cnpj in listaDocumentosCadastrados:
         cnpj = fake.cnpj()
-    documentosCadastrados.add(cnpj)
+    listaDocumentosCadastrados.append(cnpj)
     return cnpj
+
 
 def generate_status():
     return random.choice(status)
