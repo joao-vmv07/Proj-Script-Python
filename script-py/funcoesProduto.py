@@ -9,9 +9,12 @@ from connectionPostgres import *
 locales = 'pt-BR'
 fake = Faker(locales)
 
+# def getDadosDataBaseProduto(contmaticId):
+#     listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(contmaticId)
+#     return listaAtributos, listaGrupos, listaCodigoTributacao
+
 listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(317)
 documentosCliente, documentosFornecedor = connectionMongo(317)
-
 
 def valorProduto(campoAlgoritmo):
     valorProduto = eval(f'{campoAlgoritmo}()')
@@ -43,7 +46,7 @@ def generate_marca():
 
 
 def generate_peso():
-    return round(random.uniform(0.00, 100.00), 3)
+    return round(random.uniform(0.00, 100.00), 2)
 
 
 def generate_unidadeMedida():
@@ -103,7 +106,7 @@ def generate_codigoTributacao():
 
 
 def generate_codigoBeneficioUF():
-    return random.getrandbits(30)
+    return "12548791"
 
 
 def generate_fornecedor():

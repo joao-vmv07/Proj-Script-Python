@@ -1,5 +1,5 @@
 from util.funcoesUtil import *
-# main(projName, TelaCadastro, quantidadeCadastros, contmaticID)
+# main(projName, TelaCadastro, tipoCadastro, quantidadeCadastros, contmaticID)
 
-# Testes
-preencherPlanilhaTodosCampos(3,"produtos", carregarCamposJson("simplifique","produtos"))
+# Teste
+preencherPlanilhaTodosCampos(17,"produtos", carregarCamposJson("simplifique","produtos"))

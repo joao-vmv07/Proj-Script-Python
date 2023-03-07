@@ -10,9 +10,9 @@ from listaValoresPreenchimento import *
 
 locales = 'pt-BR'
 fake = Faker(locales)
-
 POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
+
 
 documentosCadastrados = connectionMongo(317)
 listaDocumentosCadastrados = list(documentosCadastrados)

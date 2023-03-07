@@ -2,12 +2,19 @@ import openpyxl
 import json
 from faker import Faker
 from funcoesParceiro import *
+from funcoesProduto import *
 
 def checkValorPreencher(infDadoCriado, campoAlgoritmo, campoCabecalho, telaCadastro):
     if telaCadastro == "parceiros":
         return valorParceiro(infDadoCriado, campoAlgoritmo, campoCabecalho)
     if telaCadastro == "produtos":
         return valorProduto(campoAlgoritmo)
+
+def checkTipoCadastro(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
+    if tipoCadastro == "todosCampos":
+        preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
+    if tipoCadastro == "camposObrigatorio":
+        preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
 
 def carregarPlanilha(telacadastro):
     planilha = openpyxl.load_workbook(f'excel/planilhas/importar-{telacadastro}.xlsx')
