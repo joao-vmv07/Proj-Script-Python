@@ -1,7 +1,6 @@
 from faker import Faker
 import random
 import string
-from funcoesParceiro import *
 from listaValoresPreenchimento import *
 from connectionMongo import *
 from connectionPostgres import *
@@ -9,12 +8,15 @@ from connectionPostgres import *
 locales = 'pt-BR'
 fake = Faker(locales)
 
-# def getDadosDataBaseProduto(contmaticId):
-#     listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(contmaticId)
-#     return listaAtributos, listaGrupos, listaCodigoTributacao
 
-listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(317)
-documentosCliente, documentosFornecedor = connectionMongo(317)
+def set_listas_Produtos(contmaticId):
+    global listaAtributos 
+    global listaGrupos 
+    global listaCodigoTributacao
+    listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(contmaticId)
+    global documentosCliente
+    global documentosFornecedor 
+    documentosCliente, documentosFornecedor = connectionMongo(contmaticId)
 
 def valorProduto(campoAlgoritmo):
     valorProduto = eval(f'{campoAlgoritmo}()')
@@ -102,7 +104,7 @@ def generate_CEST():
 
 
 def generate_codigoTributacao():
-    return random.choice(listaCodigoTributacao)
+    return random.choice(listaCodigoTributacao) if listaCodigoTributacao else ""
 
 
 def generate_codigoBeneficioUF():
@@ -110,12 +112,12 @@ def generate_codigoBeneficioUF():
 
 
 def generate_fornecedor():
-    return random.choice(documentosFornecedor)
+    return  random.choice(documentosFornecedor) if documentosFornecedor else ""
 
 
 def generate_atributo():
-    return random.choice(listaAtributos)
+    return random.choice(listaAtributos) if listaAtributos else ""
 
 
 def generate_grupo():
-    return random.choice(listaGrupos)
+    return random.choice(listaGrupos) if listaGrupos else ""

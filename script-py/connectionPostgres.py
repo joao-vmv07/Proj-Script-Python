@@ -22,11 +22,13 @@ def connectionPostgres(contmaticId):
         WHERE contmatic_id = {contmaticId};
     '''
 
-    resultAtributo = conn.connect().execute(text(queryNomeAtributo))
-    resultGrupo = conn.connect().execute(text(queryNomeGrupo))
-    resultTributacao = conn.connect().execute(text(queryTributacao))
+    dbConnection = conn.connect()
+    resultAtributo = dbConnection.execute(text(queryNomeAtributo))
+    resultGrupo = dbConnection.execute(text(queryNomeGrupo))
+    resultTributacao = dbConnection.execute(text(queryTributacao))
 
     listaAtributos = list(map(lambda atributo: atributo[0], list(resultAtributo)))
     listaGrupos = list(map(lambda grupo: grupo[0], list(resultGrupo)))
     listaCodigoTributacao = list(map(lambda tributacao: tributacao[0], list(resultTributacao)))
+    dbConnection.close()
     return listaAtributos, listaGrupos , listaCodigoTributacao

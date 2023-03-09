@@ -29,5 +29,6 @@ def connectionMongo(contmaticId):
 
     documentosFornecedor = list(map(lambda fornecedorDoc: fornecedorDoc["_id"]["documento"], parceiro_fornecedor))
     documentosCliente = list(map(lambda clienteDoc: clienteDoc["_id"]["documento"], parceiro_cliente))
+    mongoclient.close()
     return documentosCliente, documentosFornecedor
 

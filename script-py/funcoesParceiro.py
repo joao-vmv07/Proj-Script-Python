@@ -14,10 +14,10 @@ POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
 
 
-documentosCadastrados = connectionMongo(317)
+documentosCadastrados = connectionMongo(18173)
 listaDocumentosCadastrados = list(documentosCadastrados)
 
-with open("script-py/mapeamento_campos.json", encoding='utf-8') as meu_json:
+with open("mapeamento_campos.json", encoding='utf-8') as meu_json:
     dadosJsonCampos = json.load(meu_json)
 camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
 
@@ -151,7 +151,7 @@ def generate_tipoTelefone(recebeXml):
 
 
 def generate_telefone(recebeXml):
-    return random.getrandbits(34) if recebeXml == 'Sim' else ''
+    return fake.ssn() if recebeXml == 'Sim' else ''
 
 
 def generate_email(recebeXml):

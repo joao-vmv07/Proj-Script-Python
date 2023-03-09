@@ -10,19 +10,19 @@ def checkValorPreencher(infDadoCriado, campoAlgoritmo, campoCabecalho, telaCadas
     if telaCadastro == "produtos":
         return valorProduto(campoAlgoritmo)
 
-def checkTipoCadastro(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
+def cadastrar(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
     if tipoCadastro == "todosCampos":
         preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
-    if tipoCadastro == "camposObrigatorio":
+    if tipoCadastro == "camposObrigatorios":
         preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
 
 def carregarPlanilha(telacadastro):
-    planilha = openpyxl.load_workbook(f'excel/planilhas/importar-{telacadastro}.xlsx')
+    planilha = openpyxl.load_workbook(f'../excel/planilhas/importar-{telacadastro}.xlsx')
     paginaDaPlanilha = planilha[f'importar-{telacadastro}']
     return planilha, paginaDaPlanilha
 
 def carregarCamposJson(projName, telaCadastro):
-    with open("script-py/mapeamento_cadastros.json", encoding='utf-8') as meu_json:
+    with open("mapeamento_cadastros.json", encoding='utf-8') as meu_json:
         dadosJson = json.load(meu_json) 
     camposJson = dadosJson[f'{projName}'][f'{telaCadastro}']["campos"]
     return camposJson
@@ -36,7 +36,7 @@ def preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, cam
                 paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValorPreencher(infDadoCriado, campo['algoritmo'], campo['cabecalho'],telaCadastro))
             else:
                 paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha, value = "")
-    planilha.save(f'excel/planilhasGerada/importar-{telaCadastro}.xlsx')
+    planilha.save(f'../excel/planilhasGerada/importar-{telaCadastro}.xlsx')
 
 def preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, camposJson): 
     planilha, paginaDaPlanilha = carregarPlanilha(telaCadastro)
@@ -44,4 +44,4 @@ def preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, camposJson
         infDadoCriado = {}
         for colunaPlanilha, campo in [(y + 1, campo) for (y, campo) in enumerate(camposJson)]:
             paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValorPreencher(infDadoCriado, campo['algoritmo'],  campo['cabecalho'], telaCadastro))
-    planilha.save(f'excel/planilhasGerada/importar-{telaCadastro}.xlsx')
+    planilha.save(f'../excel/planilhasGerada/importar-{telaCadastro}.xlsx')
