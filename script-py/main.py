@@ -9,8 +9,9 @@ def __init__():
     tipoCadastro = sys.argv[3]
     quantidadeCadastros = int(sys.argv[4])
     contmaticId = int(sys.argv[5])
+    getDadosBase(telaCadastro, contmaticId)
     cadastrar(projName, telaCadastro, tipoCadastro, quantidadeCadastros)
-    set_listas_Produtos(contmaticId)
+    
 
 __init__()
 

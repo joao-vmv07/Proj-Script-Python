@@ -2,24 +2,24 @@ import json
 from faker import Faker
 import random
 import string
-
 from connectionMongo import connectionMongo
 from funcoesProduto import valorProduto
 from funcoesProduto import *
-from listaValoresPreenchimento import *
+from util.listaValoresPreenchimento import *
 
 locales = 'pt-BR'
 fake = Faker(locales)
 POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
 
-
-documentosCadastrados = connectionMongo(18173)
-listaDocumentosCadastrados = list(documentosCadastrados)
-
-with open("mapeamento_campos.json", encoding='utf-8') as meu_json:
+with open("mapeamentos-json/mapeamento_campos.json", encoding='utf-8') as meu_json:
     dadosJsonCampos = json.load(meu_json)
 camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
+
+def set_lista_parceiros(contmaticid):
+    global listaDocumentosCadastrados
+    documentosCadastrados = connectionMongo(contmaticid)
+    listaDocumentosCadastrados = list(documentosCadastrados)
 
 
 def valorParceiro(infDadoCriado, campoAlgoritmo, campoCabecalho):

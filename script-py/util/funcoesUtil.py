@@ -1,3 +1,4 @@
+import warnings
 import openpyxl
 import json
 from faker import Faker
@@ -16,13 +17,20 @@ def cadastrar(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
     if tipoCadastro == "camposObrigatorios":
         preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
 
+def getDadosBase(telaCadastro,contmaticId):
+    if telaCadastro == "parceiros":
+        set_lista_parceiros(contmaticId)
+    if telaCadastro == "produtos":
+        set_listas_Produtos(contmaticId)  
+
 def carregarPlanilha(telacadastro):
+    warnings.simplefilter(action='ignore', category=UserWarning)
     planilha = openpyxl.load_workbook(f'../excel/planilhas/importar-{telacadastro}.xlsx')
     paginaDaPlanilha = planilha[f'importar-{telacadastro}']
     return planilha, paginaDaPlanilha
 
 def carregarCamposJson(projName, telaCadastro):
-    with open("mapeamento_cadastros.json", encoding='utf-8') as meu_json:
+    with open("mapeamentos-json/mapeamento_cadastros.json", encoding='utf-8') as meu_json:
         dadosJson = json.load(meu_json) 
     camposJson = dadosJson[f'{projName}'][f'{telaCadastro}']["campos"]
     return camposJson

@@ -1,7 +1,7 @@
 from faker import Faker
 import random
 import string
-from listaValoresPreenchimento import *
+from util.listaValoresPreenchimento import *
 from connectionMongo import *
 from connectionPostgres import *
 
