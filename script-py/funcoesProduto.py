@@ -8,7 +8,6 @@ from connectionPostgres import *
 locales = 'pt-BR'
 fake = Faker(locales)
 
-
 def set_listas_Produtos(contmaticId):
     global listaAtributos 
     global listaGrupos 
@@ -17,6 +16,7 @@ def set_listas_Produtos(contmaticId):
     global documentosCliente
     global documentosFornecedor 
     documentosCliente, documentosFornecedor = connectionMongo(contmaticId)
+
 
 def valorProduto(campoAlgoritmo):
     valorProduto = eval(f'{campoAlgoritmo}()')
