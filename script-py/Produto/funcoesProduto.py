@@ -2,13 +2,13 @@ from faker import Faker
 import random
 import string
 from util.listaValoresPreenchimento import *
-from connectionMongo import *
-from connectionPostgres import *
+from repositories.connectionMongo import *
+from repositories.connectionPostgres import *
 
 locales = 'pt-BR'
 fake = Faker(locales)
 
-def set_listas_Produtos(contmaticId):
+def get_info_produtos(contmaticId):
     global listaAtributos 
     global listaGrupos 
     global listaCodigoTributacao

@@ -12,16 +12,19 @@ def checkValorPreencher(infDadoCriado, campoAlgoritmo, campoCabecalho, telaCadas
         return valorProduto(campoAlgoritmo)
 
 def cadastrar(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
+    checkTipoCadastro(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro)
+
+def checkTipoCadastro(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
     if tipoCadastro == "todosCampos":
         preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
     if tipoCadastro == "camposObrigatorios":
         preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, carregarCamposJson(projName, telaCadastro))
 
-def getDadosBase(telaCadastro,contmaticId):
+def getDadosBase(telaCadastro, contmaticId):
     if telaCadastro == "parceiros":
-        set_lista_parceiros(contmaticId)
+        get_info_parceiros(contmaticId)
     if telaCadastro == "produtos":
-        set_listas_Produtos(contmaticId)  
+        get_info_produtos(contmaticId)  
 
 def carregarPlanilha(telacadastro):
     warnings.simplefilter(action='ignore', category=UserWarning)
@@ -41,7 +44,7 @@ def preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, cam
         infDadoCriado = {}
         for colunaPlanilha, campo in [(y + 1, campo) for (y, campo) in enumerate(camposJson)]:
             if campo["obrigatorio"]:
-                paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValorPreencher(infDadoCriado, campo['algoritmo'], campo['cabecalho'],telaCadastro))
+                paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValorPreencher(infDadoCriado, campo['algoritmo'], campo['cabecalho'], telaCadastro))
             else:
                 paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha, value = "")
     planilha.save(f'../excel/planilhasGerada/importar-{telaCadastro}.xlsx')
