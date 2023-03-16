@@ -1,6 +1,4 @@
 import sys
-from funcoesProduto import *
-from funcoesParceiro import *
 from util.funcoesUtil import *
 
 def __init__():
@@ -12,6 +10,4 @@ def __init__():
     getDadosBase(telaCadastro, contmaticId)
     cadastrar(projName, telaCadastro, tipoCadastro, quantidadeCadastros)
     
-
 __init__()
-

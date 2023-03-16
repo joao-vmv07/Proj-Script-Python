@@ -3,8 +3,6 @@ from faker import Faker
 import random
 import string
 from connectionMongo import connectionMongo
-from funcoesProduto import valorProduto
-from funcoesProduto import *
 from util.listaValoresPreenchimento import *
 
 locales = 'pt-BR'

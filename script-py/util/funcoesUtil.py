@@ -2,8 +2,8 @@ import warnings
 import openpyxl
 import json
 from faker import Faker
-from funcoesParceiro import *
-from funcoesProduto import *
+from Parceiro.funcoesParceiro import *
+from Produto.funcoesProduto import *
 
 def checkValorPreencher(infDadoCriado, campoAlgoritmo, campoCabecalho, telaCadastro):
     if telaCadastro == "parceiros":
