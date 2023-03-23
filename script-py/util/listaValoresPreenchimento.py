@@ -1,4 +1,5 @@
-#Valores preenchimento pré-definidos
+#Valores preenchimento pré-
+#Parceiros
 status = ['Ativo']
 tipoCadastro = ['Cliente', 'Fornecedor', 'Transportadora', 'Cliente | Fornecedor', 'Cliente | Fornecedor | Transportadora', 'Cliente | Transportadora', 'Fornecedor | Transportadora']
 perfilParceiro = ['Pessoa Física', 'Pessoa Jurídica', 'Estrangeiro']

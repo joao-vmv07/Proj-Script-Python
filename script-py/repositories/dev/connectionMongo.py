@@ -1,11 +1,12 @@
 from pymongo import MongoClient
 import random
 
-#Conexão com o banco Dados GET documentos
+#Conexão com o banco Dados Dev GET documentos
 # Fornecedor 
 # Cliente
 # Empresa
-def connectionMongo(contmaticId):
+
+def connectionMongoDev(contmaticId):
     mongoclient = MongoClient(
         host='mongodb://192.168.5.98:27017',
         authSource='admin'

@@ -2,21 +2,21 @@ import json
 from faker import Faker
 import random
 import string
-from repositories.connectionMongo import connectionMongo
 from util.listaValoresPreenchimento import *
+from repositories.funcoesRepositories import getBaseDados
 
 locales = 'pt-BR'
 fake = Faker(locales)
 POSICAO_PRIMEIRA_LINHA_PREENCHIMENTO = 3
 valorPreenchido = ""
 
-with open("mapeamentos-json/mapeamento_campos_prioritarios.json", encoding='utf-8') as meu_json:
+with open("script-py/mapeamentos-json/mapeamento_campos_prioritarios.json", encoding='utf-8') as meu_json:
     dadosJsonCampos = json.load(meu_json)
 camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPrioritarios"]
 
-def get_info_parceiros(contmaticid):
+def get_info_parceiros(telaCadastro, ambiente, contmaticId):
     global listaDocumentosCadastrados
-    documentosCadastrados = connectionMongo(contmaticid)
+    documentosCadastrados = getBaseDados(telaCadastro, ambiente, contmaticId)
     listaDocumentosCadastrados = list(documentosCadastrados)
 
 
@@ -189,3 +189,4 @@ def generate_UF(cep):
 
 def generate_pais():
     return "Brasil"
+

@@ -4,7 +4,7 @@
 #   Código tributação
 from sqlalchemy import create_engine,text
 
-def connectionPostgres(contmaticId):
+def connectionPostgresDev(contmaticId):
     conn = create_engine('postgresql+psycopg2://postgres@192.168.5.27/erp')
     queryNomeAtributo = f'''
         SELECT nome
@@ -19,7 +19,7 @@ def connectionPostgres(contmaticId):
     queryTributacao = f'''
         SELECT codigo
         FROM tributacao 
-        WHERE contmatic_id = {contmaticId};
+        WHERE contmatic_id = {contmaticId}
     '''
 
     dbConnection = conn.connect()

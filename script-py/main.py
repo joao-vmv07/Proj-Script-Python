@@ -1,13 +1,6 @@
-import sys
-from util.funcoesUtil import *
+from menu.menu import *
 
-def __init__():
-    projName = sys.argv[1]
-    telaCadastro = sys.argv[2]
-    tipoCadastro = sys.argv[3]
-    quantidadeCadastros = int(sys.argv[4])
-    contmaticId = sys.argv[5]
-    getDadosBase(telaCadastro, contmaticId)
-    cadastrar(projName, telaCadastro, tipoCadastro, quantidadeCadastros)
+def main():
+    menuConsoleCadastro()
     
-__init__()
+main()

@@ -2,20 +2,18 @@ from faker import Faker
 import random
 import string
 from util.listaValoresPreenchimento import *
-from repositories.connectionMongo import *
-from repositories.connectionPostgres import *
+from repositories.funcoesRepositories import getBaseDados
 
 locales = 'pt-BR'
 fake = Faker(locales)
 
-def get_info_produtos(contmaticId):
+def get_info_produtos(telaCadastro, ambiemte, contmaticId):
     global listaAtributos 
     global listaGrupos 
     global listaCodigoTributacao
-    listaAtributos, listaGrupos, listaCodigoTributacao = connectionPostgres(contmaticId)
     global documentosCliente
     global documentosFornecedor 
-    documentosCliente, documentosFornecedor = connectionMongo(contmaticId)
+    documentosCliente, documentosFornecedor, listaAtributos, listaGrupos, listaCodigoTributacao = getBaseDados(telaCadastro, ambiemte, contmaticId)
 
 
 def valorProduto(campoAlgoritmo):
