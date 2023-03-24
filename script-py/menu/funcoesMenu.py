@@ -1,7 +1,7 @@
 from menu.mensagensMenu import *
 
 def checkArgumentoStr(opcoesValidas, messageOpcoes):
-    argResposta = str(input())
+    argResposta = str(input()).lower()
     while argResposta not in opcoesValidas:
         print(f'Opcão {argResposta} {opcaoInvalidaMessage}')
         print(f'Opções: {messageOpcoes}')
@@ -15,7 +15,3 @@ def checkArgumentoInt():
             print("Por favor, digite apenas caracteres Númericos!!")
             argResposta = int(input())
     return argResposta
-
-def checkInputConfirmar(inputConfirmar):
-    if inputConfirmar == 'S' or 's':
-        return True
