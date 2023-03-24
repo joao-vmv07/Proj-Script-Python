@@ -1,6 +1,6 @@
 
-from repositories.homolog.connectionMongo import connectionMongoHomolog
-from repositories.homolog.connectionPostgres import connectionPostgresHomolog
+from repositories.homolog.connectionMongoERP import connectionMongoHomolog
+from repositories.homolog.connectionPostgresERP import connectionPostgresHomolog
 from repositories.dev.connectionMongo import connectionMongoDev
 from repositories.dev.connectionPostgres import connectionPostgresDev
 

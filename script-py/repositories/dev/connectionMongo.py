@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-import random
 
 #Conexão com o banco Dados Dev GET documentos
 # Fornecedor 

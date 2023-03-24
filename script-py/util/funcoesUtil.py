@@ -2,8 +2,8 @@ import warnings
 import openpyxl
 import json
 from faker import Faker
-from parceiro.funcoesParceiro import *
-from produto.funcoesProduto import *
+from parceiro.funcoes import *
+from produto.funcoes import *
 
 def cadastrar(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
     checkTipoCadastro(checkProjName(projName), checkTelaCadastro(telaCadastro), tipoCadastro, argQuantidadeCadastro)
