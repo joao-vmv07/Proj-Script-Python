@@ -2,27 +2,24 @@ from util.funcoesUtil import cadastrar
 from util.funcoesUtil import checkDataBase
 from menu.mensagens import *
 from menu.funcoes import *
+from menu.opcoesValidas import *
 import os
 
-opcoesProjeto = ['-s']
-opcoesTelaCadastro = ['-pro', '-par']
-opcoesAmbiente = ['-d', '-h']
-opcoesTipoCadastro = ['-op', '-o']
 
 def menuConsoleCadastro(): 
-    print("\nSCRIPT-PY GERADOR DADOS PARA CADASTROS EM CSV:\n")
+    print("\n SCRIPT-PY GERADOR DADOS PARA CADASTROS EM CSV:\n")
     
-    print("Para qual projeto a massa de dados será feita? \nOpções: Simplifique (-s)")
-    inputProjteto = checkArgumentoStr(opcoesProjeto, projetosMessage)
+    print(f'Para qual projeto a massa de dados será feita? \nOpções: {projetosOpcoesMessage}')
+    inputProjteto = checkArgumentoStr(opcoesProjeto, projetosOpcoesMessage)
 
-    print("\nQual o tipo da massa de dados? \nOpções: Produtos (-pro) Parceiros (-par)")
-    inputTelaCadastro = checkArgumentoStr(opcoesTelaCadastro, massaMessage)
+    print(f'\nQual o tipo da massa de dados? \nOpções: {massaOpcoesMessage}')
+    inputTelaCadastro = checkArgumentoStr(opcoesTelaCadastro, massaOpcoesMessage)
     
-    print("\nSerá utilizada em qual ambiente? \nOpções: Desenvolvimento (-d) Homologação (-h)")
-    inputAmbiente = checkArgumentoStr(opcoesAmbiente, ambienteBancoMessage)
+    print(f'\nSerá utilizada em qual ambiente? \nOpções: {ambienteBancoOpcoesMessage}')
+    inputAmbiente = checkArgumentoStr(opcoesAmbiente, ambienteBancoOpcoesMessage)
 
-    print("\nQual o tipo de preenchimento para o cadastro? \nOpções: Todos campos opcionais (-op) Campos obrigatórios (-o)")
-    inputTipoCadastro = checkArgumentoStr(opcoesTipoCadastro, preenchimentoMessage )
+    print(f'\nQual o tipo de preenchimento para o cadastro? \nOpções: {preenchimentoOpcoesMessage}')
+    inputTipoCadastro = checkArgumentoStr(opcoesTipoCadastro, preenchimentoOpcoesMessage )
 
     print("\nQual a quantidade de registros?")
     inputquantidadeRegistros = checkArgumentoInt()

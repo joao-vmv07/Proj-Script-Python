@@ -5,7 +5,7 @@ from repositories.homolog.connectionMongoConnectContSocial import connectionMong
 def checkArgumentoStr(opcoesValidas, messageOpcoes):
     argResposta = str(input()).lower()
     while argResposta not in opcoesValidas:
-        print(f'Opcão {argResposta} {opcaoInvalidaMessage}')
+        print(f'\nOpcão {argResposta} {opcaoInvalidaMessage}')
         print(f'Opções: {messageOpcoes}')
         argResposta = str(input())
     return argResposta
