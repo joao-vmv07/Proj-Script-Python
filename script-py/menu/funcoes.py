@@ -19,19 +19,19 @@ def checkArgumentoInt():
 
     return argResposta 
 
-def checkOpcaoRegistro(listaResgistros):
+def checkOpcaoRegistro(listaRegistros):
     argResposta = None
     while argResposta is None:
         try:
             argResposta = int(input())
-            listaResgistros[argResposta]
+            listaRegistros[argResposta]
         except ValueError:
                 print("Por favor, digite apenas caracteres Númericos!!")
         except IndexError:
                 argResposta = None
                 print("Opção selecionada inválida, digite novamente por favor:")
 
-    return listaResgistros[argResposta]["_id"]
+    return listaRegistros[argResposta]["_id"]
 
 def emailIsValid(ambiente):
     argRespostaEmail = str(input())
