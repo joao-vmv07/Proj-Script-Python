@@ -5,7 +5,6 @@ from menu.funcoes import *
 from menu.opcoesValidas import *
 import os
 
-
 def menuConsoleCadastro(): 
     print("\n SCRIPT-PY GERADOR DADOS PARA CADASTROS EM CSV:\n")
     

@@ -1,3 +1,4 @@
+import itertools
 import json
 from faker import Faker
 import random
@@ -16,8 +17,7 @@ camposPrioritarios = dadosJsonCampos["simplifique"]["parceiros"]["camposPriorita
 
 def get_info_parceiros(telaCadastro, ambiente, contmaticId):
     global listaDocumentosCadastrados
-    documentosCadastrados = getBaseDados(telaCadastro, ambiente, contmaticId)
-    listaDocumentosCadastrados = list(documentosCadastrados)
+    listaDocumentosCadastrados = list(itertools.chain(*getBaseDados(telaCadastro,ambiente,contmaticId)))
 
 
 def valorParceiro(infDadoCriado, campoAlgoritmo, campoCabecalho):
