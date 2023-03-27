@@ -9,17 +9,17 @@ def connectionPostgresDev(contmaticId):
     queryNomeAtributo = f'''
         SELECT nome
         FROM atributo
-        WHERE contmatic_id = {contmaticId["_id"]}
+        WHERE contmatic_id = {contmaticId}
     '''
     queryNomeGrupo = f'''
         SELECT nome
         FROM grupo
-        WHERE contmatic_id = {contmaticId["_id"]}
+        WHERE contmatic_id = {contmaticId}
     '''
     queryTributacao = f'''
         SELECT codigo
         FROM tributacao 
-        WHERE contmatic_id = {contmaticId["_id"]}
+        WHERE contmatic_id = {contmaticId}
     '''
 
     dbConnection = conn.connect()
