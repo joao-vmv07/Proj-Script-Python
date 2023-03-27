@@ -14,8 +14,8 @@ def connectionMongoHomolog(contmaticId):
     coll_parceiro_fornecedor = db_parceiro["clienteFornecedor"]
     coll_parceiro_cliente = db_parceiro["clienteFornecedor"]
 
-    query_doc_forncedor = {"fornecedor": True, "_id.contmaticId": contmaticId["_id"]}
-    query_doc_cliente = {"cliente": True, "_id.contmaticId": contmaticId["_id"]}
+    query_doc_forncedor = {"fornecedor": True, "_id.contmaticId": contmaticId}
+    query_doc_cliente = {"cliente": True, "_id.contmaticId": contmaticId}
     projection = {
         "_id": 1, 
     } 

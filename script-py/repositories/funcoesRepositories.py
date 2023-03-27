@@ -5,7 +5,7 @@ from repositories.dev.connectionMongoERP import connectionMongoDev
 from repositories.dev.connectionPostgresERP import connectionPostgresDev
 from repositories.dev.connectionMongoConnectContSocial import connectionMongoContSocialDev
 
-def getBaseDados(telacadastro, ambiente ,contmaticId):
+def getBaseDados(telacadastro, ambiente, contmaticId):
     if telacadastro =="-par" and ambiente == "-d":
         documentosCadastrados = connectionMongoDev(contmaticId)
         return documentosCadastrados

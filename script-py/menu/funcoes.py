@@ -31,7 +31,7 @@ def checkOpcaoRegistro(listaResgistros):
                 argResposta = None
                 print("Opção selecionada inválida, digite novamente por favor.")
 
-    return listaResgistros[argResposta]
+    return listaResgistros[argResposta]["_id"]
 
 def emailIsValid(ambiente):
     argRespostaEmail = str(input())
