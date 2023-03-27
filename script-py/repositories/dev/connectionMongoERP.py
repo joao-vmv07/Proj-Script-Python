@@ -1,16 +1,16 @@
 from pymongo import MongoClient
 
-#Conexão com o banco Dados Homolog GET documentos
+#Conexão com o banco Dados Dev GET documentos
 # Fornecedor 
 # Cliente
 # Empresa
 
-def connectionMongoHomolog(contmaticId):
+def connectionMongoDev(contmaticId):
     mongoclient = MongoClient(
-        host='mongodb://arquivo:%40rquivo@192.168.5.175:27017',
+        host='mongodb://192.168.5.98:27017',
         authSource='admin'
     )
-    db_parceiro = mongoclient["parceiro_homolog"]
+    db_parceiro = mongoclient["parceiro_dev"]
     coll_parceiro_fornecedor = db_parceiro["clienteFornecedor"]
     coll_parceiro_cliente = db_parceiro["clienteFornecedor"]
 
@@ -31,3 +31,4 @@ def connectionMongoHomolog(contmaticId):
     documentos_cliente = list(map(lambda clienteDoc: clienteDoc["_id"]["documento"], parceiro_cliente))
     mongoclient.close()
     return documentos_cliente, documentos_fornecedor
+

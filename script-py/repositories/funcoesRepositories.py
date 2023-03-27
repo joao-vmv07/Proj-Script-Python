@@ -1,8 +1,8 @@
 
 from repositories.homolog.connectionMongoERP import connectionMongoHomolog
 from repositories.homolog.connectionPostgresERP import connectionPostgresHomolog
-from repositories.dev.connectionMongo import connectionMongoDev
-from repositories.dev.connectionPostgres import connectionPostgresDev
+from repositories.dev.connectionMongoERP import connectionMongoDev
+from repositories.dev.connectionPostgresERP import connectionPostgresDev
 
 def getBaseDados(telacadastro, ambiente ,contmaticId):
     if telacadastro =="-par" and ambiente == "-d":

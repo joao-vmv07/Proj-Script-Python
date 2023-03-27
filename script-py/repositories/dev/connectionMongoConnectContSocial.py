@@ -41,12 +41,12 @@ def connectionMongoContSocialDev(email):
         lista_info_contratos = []
         for contmaticid in contmatic_id:
             coll_usuario_contrato_contmaticId = db_connecticont_social["contrato"]
-            queryContimaticId = {"_id": contmaticid}
+            query_contimatic_id = {"_id": contmaticid}
             projection = {
                 "razaoSocial": 1,
                 "cpfCnpj" : 1
             }
-            cursor_contrato = coll_usuario_contrato_contmaticId.find(queryContimaticId, projection)
+            cursor_contrato = coll_usuario_contrato_contmaticId.find(query_contimatic_id, projection)
             lista_info_contratos.append(cursor_contrato.next())
         cursor_contrato.close()    
         mongoclient.close()

@@ -9,17 +9,17 @@ def connectionPostgresHomolog(contmaticId):
     queryNomeAtributo = f'''
         SELECT nome
         FROM atributo
-        WHERE contmatic_id = {contmaticId}
+        WHERE contmatic_id = {contmaticId["_id"]}
     '''
     queryNomeGrupo = f'''
         SELECT nome
         FROM grupo
-        WHERE contmatic_id = {contmaticId}
+        WHERE contmatic_id = {contmaticId["_id"]}
     '''
     queryTributacao = f'''
         SELECT codigo
         FROM tributacao 
-        WHERE contmatic_id = {contmaticId}
+        WHERE contmatic_id = {contmaticId["_id"]}
     '''
 
     dbConnection = conn.connect()

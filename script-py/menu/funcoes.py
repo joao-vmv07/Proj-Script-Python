@@ -17,7 +17,8 @@ def checkArgumentoInt():
             argResposta = int(input())
         except ValueError:
                 print("Por favor, digite apenas caracteres Númericos!!")
-    return argResposta
+
+    return argResposta 
 
 def emailIsValid(ambiente):
     argRespostaEmail = str(input())
@@ -26,10 +27,11 @@ def emailIsValid(ambiente):
         argRespostaEmail = str(input("\nEmail inválido, digite novamente por favor: "))
         infoContmaticIds = checkEmail(argRespostaEmail, ambiente)
     if len(infoContmaticIds) > 1:
-        print("\nExiste mais de 1 contrato registrados em sua conta:")
+        print("\nExiste mais de 1 empresa registrada em sua conta:")
         for index, infoContmaticId in enumerate(infoContmaticIds):
             print(f'{index} - CNPJ: {infoContmaticId["cpfCnpj"]} Razão Social: {infoContmaticId["razaoSocial"]} ')
-        return infoContmaticIds[int(input("\nSelecione o registro que deseja digitando número: "))]
+        print("\nSelecione o registro que deseja gerar o cadastro, digitando número: ")
+        return checkOpcaoRegistro(infoContmaticIds)
     return infoContmaticIds[0]
 
 def checkEmail(argRespostaEmail, ambiente):
@@ -39,3 +41,17 @@ def checkEmail(argRespostaEmail, ambiente):
     if ambiente == "-h":
         infoContmaticIds = connectionMongoContSocialHomolog(argRespostaEmail)
         return infoContmaticIds
+
+def checkOpcaoRegistro(listaResgistros):
+    argResposta = None
+    while argResposta is None:
+        try:
+            argResposta = int(input())
+            listaResgistros[argResposta]
+        except ValueError:
+                print("Por favor, digite apenas caracteres Númericos!!")
+        except IndexError:
+                argResposta = None
+                print("Opção selecionada de contrato inválida, digite novamente por favor:")
+
+    return listaResgistros[argResposta]
