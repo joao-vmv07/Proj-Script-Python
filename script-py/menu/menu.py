@@ -6,7 +6,7 @@ from menu.opcoesValidas import *
 import os
 
 def menuConsoleCadastro(): 
-    print("\n SCRIPT-PY GERADOR DADOS PARA CADASTROS EM CSV:\n")
+    print("\n SCRIPT-PY GERADOR DE DADOS PARA CADASTROS EM CSV:\n")
     
     print(f'Para qual projeto a massa de dados será feita? \nOpções: {projetosOpcoesMessage}')
     inputProjteto = checkArgumentoStr(opcoesProjeto, projetosOpcoesMessage)

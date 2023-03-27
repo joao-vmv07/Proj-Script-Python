@@ -15,7 +15,7 @@ def checkArgumentoInt():
         try:
             argResposta = int(input())
         except ValueError:
-                print("Por favor, digite apenas caracteres Númericos!!")
+                print("Por favor, digite apenas caracteres númericos!!")
 
     return argResposta 
 
@@ -29,7 +29,7 @@ def checkOpcaoRegistro(listaResgistros):
                 print("Por favor, digite apenas caracteres Númericos!!")
         except IndexError:
                 argResposta = None
-                print("Opção selecionada inválida, digite novamente por favor.")
+                print("Opção selecionada inválida, digite novamente por favor:")
 
     return listaResgistros[argResposta]["_id"]
 
@@ -37,7 +37,7 @@ def emailIsValid(ambiente):
     argRespostaEmail = str(input())
     infoEmail = checkEmail(argRespostaEmail, ambiente)
     while infoEmail is None:
-        argRespostaEmail = str(input("\nEmail inválido, digite novamente por favor: "))
+        argRespostaEmail = str(input("\nE-mail inválido, digite novamente por favor: "))
         infoEmail = checkEmail(argRespostaEmail, ambiente)
     if len(infoEmail) > 1:
         print("\nExiste mais de 1 empresa registrada em sua conta:")
