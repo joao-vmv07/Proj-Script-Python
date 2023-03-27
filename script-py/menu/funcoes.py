@@ -52,6 +52,6 @@ def checkOpcaoRegistro(listaResgistros):
                 print("Por favor, digite apenas caracteres Númericos!!")
         except IndexError:
                 argResposta = None
-                print("Opção selecionada de contrato inválida, digite novamente por favor:")
+                print("Opção selecionada inválida, digite novamente por favor.")
 
     return listaResgistros[argResposta]
