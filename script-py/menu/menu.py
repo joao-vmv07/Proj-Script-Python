@@ -24,12 +24,12 @@ def menuConsoleCadastro():
     print("\nQual a quantidade de registros?")
     inputquantidadeRegistros = checkArgumentoInt()
 
-    print("\nInforme o e-mail da sua conta?")
+    print("\nInforme o e-mail da sua conta:")
     inputEmail = emailIsValid(inputAmbiente)
 
     checkDataBase(inputTelaCadastro, inputAmbiente, inputEmail)
     cadastrar(inputProjteto, inputTelaCadastro, inputTipoCadastro, inputquantidadeRegistros)
 
-    print("\nArquivo CSV gerado com SUCESSO!!")
+    print("\nArquivo .CSV gerado com SUCESSO!!")
     print("Verifique a pasta excel/planilhasGerada\n")
     os.system("PAUSE")
