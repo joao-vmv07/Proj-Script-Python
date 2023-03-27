@@ -43,6 +43,6 @@ def emailIsValid(ambiente):
         print("\nExiste mais de 1 empresa registrada em sua conta:")
         for index, infoEmailRegistro in enumerate(infoEmail):
             print(f'{index} - CNPJ: {infoEmailRegistro["cpfCnpj"]} Razão Social: {infoEmailRegistro["razaoSocial"]} ')
-        print("\nSelecione o registro que deseja gerar o cadastro, digitando número: ")
+        print("\nSelecione o registro que deseja gerar o cadastro, digitando o número: ")
         return checkOpcaoRegistro(infoEmail)
     return infoEmail[0]
