@@ -15,7 +15,10 @@ def checkArgumentoInt():
         try:
             argResposta = int(input())
             if argResposta < 1:
-                print("Quantidade inválida, digite novamente: ")
+                print("Quantidade inválida, digite novamente:")
+                argResposta = None
+            if argResposta > 100:
+                print("Quantidade inválida limite máximo é de 100 registros, digite novamente:")
                 argResposta = None
         except ValueError:
                 print("Por favor, digite apenas caracteres númericos!!")

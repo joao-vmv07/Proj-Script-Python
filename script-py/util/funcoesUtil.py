@@ -1,9 +1,12 @@
 import warnings
 import openpyxl
 import json
+import os
 from faker import Faker
 from parceiro.funcoes import *
 from produto.funcoes import *
+
+caminho = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 
 def cadastrar(projName, telaCadastro, tipoCadastro, argQuantidadeCadastro):
     checkTipoCadastro(checkProjName(projName), checkTelaCadastro(telaCadastro), tipoCadastro, argQuantidadeCadastro)
@@ -59,7 +62,7 @@ def preencherPlanilhaCamposObrigatorios(argQuantidadeCadastro, telaCadastro, cam
                 paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValorPreencher(infDadoCriado, campo['algoritmo'], campo['cabecalho'], telaCadastro))
             else:
                 paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha, value = "")
-    planilha.save(f'excel/planilhasGerada/importar-{telaCadastro}.xlsx')
+    planilha.save(f'{caminho}/importar-{telaCadastro}.xlsx')
 
 def preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, camposJson): 
     planilha, paginaDaPlanilha = loadPlanilha(telaCadastro)
@@ -67,4 +70,4 @@ def preencherPlanilhaTodosCampos(argQuantidadeCadastro, telaCadastro, camposJson
         infDadoCriado = {}
         for colunaPlanilha, campo in [(y + 1, campo) for (y, campo) in enumerate(camposJson)]:
             paginaDaPlanilha.cell(row = linhaPlanilha, column = colunaPlanilha , value = checkValorPreencher(infDadoCriado, campo['algoritmo'],  campo['cabecalho'], telaCadastro))
-    planilha.save(f'excel/planilhasGerada/importar-{telaCadastro}.xlsx')
+    planilha.save(f'{caminho}/importar-{telaCadastro}.xlsx')

@@ -30,5 +30,5 @@ def menuConsoleCadastro():
     cadastrar(inputProjeto, inputTelaCadastro, inputTipoCadastro, inputQuantidadeRegistros)
 
     print("\nArquivo .CSV gerado com SUCESSO!!")
-    print("Verifique a pasta excel/planilhasGerada\n")
+    print("Verifique a Área de trabalho.\n")
     os.system("PAUSE")
