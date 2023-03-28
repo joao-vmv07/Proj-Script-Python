@@ -23,7 +23,7 @@ def menuConsoleCadastro():
     print("\nQual a quantidade de registros?")
     inputQuantidadeRegistros = checkArgumentoInt()
 
-    print("\nInforme o e-mail da sua conta:")
+    print("\nInforme o e-mail de login:")
     inputEmail = emailIsValid(inputAmbiente)
 
     checkDataBase(inputTelaCadastro, inputAmbiente, inputEmail)

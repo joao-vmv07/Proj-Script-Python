@@ -14,6 +14,9 @@ def checkArgumentoInt():
     while argResposta is None:
         try:
             argResposta = int(input())
+            if argResposta < 1:
+                print("Quantidade inválida, digite novamente: ")
+                argResposta = None
         except ValueError:
                 print("Por favor, digite apenas caracteres númericos!!")
 
@@ -37,7 +40,7 @@ def emailIsValid(ambiente):
     argRespostaEmail = str(input())
     infoEmail = checkEmail(argRespostaEmail, ambiente)
     while infoEmail is None:
-        argRespostaEmail = str(input("\nE-mail inválido, digite novamente por favor: "))
+        argRespostaEmail = str(input(f'\nE-mail não encontrado no ambiente de {checkAmbiente(ambiente)}, digite novamente por favor: '))
         infoEmail = checkEmail(argRespostaEmail, ambiente)
     if len(infoEmail) > 1:
         print("\nExiste mais de 1 empresa registrada em sua conta:")
@@ -46,3 +49,9 @@ def emailIsValid(ambiente):
         print("\nSelecione o registro que deseja gerar o cadastro, digitando o número: ")
         return checkOpcaoRegistro(infoEmail)
     return infoEmail[0]
+
+def checkAmbiente(ambiente):
+    if ambiente == '-d':
+        return 'Desenvolvimento'
+    if ambiente == '-h':
+        return 'Homologação'

@@ -1,6 +1,6 @@
 projetosOpcoesMessage = 'Simplifique (-s)'
 massaOpcoesMessage = 'Produtos (-pro) Parceiros (-par)'
 ambienteBancoOpcoesMessage = 'Desenvolvimento (-d) Homologação (-h)'
-preenchimentoOpcoesMessage= 'Todos campos opcionais (-op) Campos obrigatórios (-o)'
+preenchimentoOpcoesMessage= 'Todos os campos opcionais e obrigatórios (-op) Somente os campos obrigatórios (-o)'
 opcaoInvalidaMessage = 'não existe. Por favor, tente novamente.'
 confirmarMessage = 'Opção inválida de confirmação'

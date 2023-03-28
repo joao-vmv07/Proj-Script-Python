@@ -38,19 +38,19 @@ def connectionMongoContSocialHomolog(email):
     contmatic_id = list(map(lambda contrato: contrato["_id"]["contmaticId"], lista_contratos))
 
     if len(contmatic_id) > 1:
-        listaInfoContratos = []
+        lista_Info_contratos = []
         for contmaticid in contmatic_id:
             coll_usuario_contrato_contmaticId = db_connecticont_social["contrato"]
-            queryContimaticId = {"_id": contmaticid}
+            query_contimatic_id = {"_id": contmaticid}
             projection = {
                 "razaoSocial": 1,
                 "cpfCnpj" : 1
             }
-            cursor_contrato = coll_usuario_contrato_contmaticId.find(queryContimaticId, projection)
-            listaInfoContratos.append(cursor_contrato.next())
+            cursor_contrato = coll_usuario_contrato_contmaticId.find(query_contimatic_id, projection)
+            lista_Info_contratos.append(cursor_contrato.next())
         cursor_contrato.close()    
         mongoclient.close()
-        return listaInfoContratos
+        return lista_Info_contratos
     mongoclient.close()
     return list(contmatic_id) 
    
